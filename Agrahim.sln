@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agrahim.API", "Agrahim.API\Agrahim.API.csproj", "{DEF44DFE-40EE-4D13-9CB3-891DC1E53A03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agrahim.Domain", "Agrahim.Domain\Agrahim.Domain.csproj", "{5E91847E-AB5C-4517-8068-9A211328D5F3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agrahim.Infrastructure", "Agrahim.Infrastructure\Agrahim.Infrastructure.csproj", "{6446C362-984E-4094-95F4-06180E598AC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Agrahim.Common", "Agrahim.Common\Agrahim.Common.csproj", "{B4E2FE15-7325-45A2-AE04-99757088247E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DEF44DFE-40EE-4D13-9CB3-891DC1E53A03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEF44DFE-40EE-4D13-9CB3-891DC1E53A03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEF44DFE-40EE-4D13-9CB3-891DC1E53A03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEF44DFE-40EE-4D13-9CB3-891DC1E53A03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E91847E-AB5C-4517-8068-9A211328D5F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E91847E-AB5C-4517-8068-9A211328D5F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E91847E-AB5C-4517-8068-9A211328D5F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E91847E-AB5C-4517-8068-9A211328D5F3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6446C362-984E-4094-95F4-06180E598AC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6446C362-984E-4094-95F4-06180E598AC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6446C362-984E-4094-95F4-06180E598AC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6446C362-984E-4094-95F4-06180E598AC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4E2FE15-7325-45A2-AE04-99757088247E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4E2FE15-7325-45A2-AE04-99757088247E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4E2FE15-7325-45A2-AE04-99757088247E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4E2FE15-7325-45A2-AE04-99757088247E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

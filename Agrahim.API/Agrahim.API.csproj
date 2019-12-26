@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.0</TargetFramework>
+    </PropertyGroup>
+
+
+    <ItemGroup>
+      <ProjectReference Include="..\Agrahim.Common\Agrahim.Common.csproj" />
+      <ProjectReference Include="..\Agrahim.Domain\Agrahim.Domain.csproj" />
+      <ProjectReference Include="..\Agrahim.Infrastructure\Agrahim.Infrastructure.csproj" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc5" />
+    </ItemGroup>
+
+</Project>
