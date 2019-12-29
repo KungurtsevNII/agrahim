@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Agrahim.Infrastructure;
+using Agrahim.Infrastructure.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,8 +35,15 @@ namespace Agrahim.API
 
             services.AddDbContext<AgrahimContext>(options =>
             {
-                options.UseInMemoryDatabase("AdskayaDrochila");
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
+
+            #endregion
+
+            #region Система Identity
+
+            services.AddIdentity<UserEntity, IdentityRole>()
+                .AddEntityFrameworkStores<AgrahimContext>();
 
             #endregion
             
@@ -75,6 +84,9 @@ namespace Agrahim.API
                 c.RoutePrefix = "swagger";
             });
             
+            // Аутенфикация
+            app.UseAuthentication();
+            // Авторизация
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

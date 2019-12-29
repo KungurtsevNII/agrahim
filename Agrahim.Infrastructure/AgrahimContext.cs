@@ -1,12 +1,11 @@
 ﻿using Agrahim.Infrastructure.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Agrahim.Infrastructure
 {
-    public class AgrahimContext : DbContext
+    public class AgrahimContext : IdentityDbContext<UserEntity>
     {
-        public DbSet<OrderEntity> Orders { get; set; }
-        
         public AgrahimContext(DbContextOptions<AgrahimContext> options)
             : base(options)
         {
