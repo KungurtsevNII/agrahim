@@ -1,6 +1,4 @@
-using System;
-
-namespace Agrahim.API.Models
+namespace Agrahim.Common.ViewModels
 {
     public class ErrorViewModel
     {

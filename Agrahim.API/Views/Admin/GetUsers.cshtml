@@ -1,0 +1,29 @@
+﻿@model List<Agrahim.Infrastructure.Entities.UserEntity>
+
+@{
+    ViewBag.Title = "Пользователи";
+    Layout = "_Layout";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<button class="btn"><a asp-controller="Admin" asp-action="CreateUser">Создать</a></button>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Phone</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Email</td>
+                <td>@user.PhoneNumber</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

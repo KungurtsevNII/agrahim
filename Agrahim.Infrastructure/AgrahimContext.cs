@@ -1,4 +1,5 @@
 ﻿using Agrahim.Infrastructure.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,5 +12,6 @@ namespace Agrahim.Infrastructure
         {
             Database.EnsureCreated();   // создаем базу данных при первом обращении
         }
+        
     }
 }

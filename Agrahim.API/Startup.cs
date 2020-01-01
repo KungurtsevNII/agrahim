@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Agrahim.Infrastructure;
 using Agrahim.Infrastructure.Entities;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,6 +33,8 @@ namespace Agrahim.API
         {
             services.AddControllersWithViews();
 
+            services.AddMediatR(Assembly.GetExecutingAssembly());
+            
             #region DbContext
 
             services.AddDbContext<AgrahimContext>(options =>
@@ -44,7 +48,23 @@ namespace Agrahim.API
 
             services.AddIdentity<UserEntity, IdentityRole>()
                 .AddEntityFrameworkStores<AgrahimContext>();
+            
+            services.Configure<IdentityOptions>(cfg =>
+            {
+                cfg.Password.RequiredLength = 6;
+                cfg.Password.RequireDigit = false;
+                cfg.Password.RequireLowercase = false;
+                cfg.Password.RequireUppercase = false;
+                cfg.Password.RequireNonAlphanumeric = false;
+                cfg.Password.RequiredUniqueChars = 1;
 
+                cfg.Lockout.MaxFailedAccessAttempts = 10;
+                cfg.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+                cfg.Lockout.AllowedForNewUsers = true;
+
+                cfg.User.RequireUniqueEmail = false; // грабли!
+            });
+            
             #endregion
             
             #region Сервис Swagger
