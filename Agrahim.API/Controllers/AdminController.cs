@@ -31,17 +31,16 @@ namespace Agrahim.API.Controllers
         }
         
         [HttpGet]
-        [Route("user/create")]
+        [Route("users/create")]
         public IActionResult CreateUser() => View();
         
         [HttpPost, ValidateAntiForgeryToken]
-        [Route("user/create")]
+        [Route("users/create")]
         public async Task<IActionResult> CreateUser(CreateUserViewModel model, CancellationToken ct)
         {
             if (ModelState.IsValid)
             {
                 UserEntity user = new UserEntity { Email = model.Email, UserName = model.Email };
-                // добавляем пользователя
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
