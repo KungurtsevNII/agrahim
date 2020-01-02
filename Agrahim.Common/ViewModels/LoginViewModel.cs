@@ -2,7 +2,7 @@
 
 namespace Agrahim.Common.ViewModels
 {
-    public class CreateUserViewModel
+    public class LoginViewModel
     {
         [Required]
         [EmailAddress(ErrorMessage = "Не верный формат email адреса")]
@@ -13,11 +13,10 @@ namespace Agrahim.Common.ViewModels
         [DataType(DataType.Password)]
         [Display(Name = "Пароль")]
         public string Password { get; set; }
+        
+        [Display(Name = "Запомнить?")]
+        public bool RememberMe { get; set; }
          
-        [Required]
-        [Compare("Password", ErrorMessage = "Пароли не совпадают")]
-        [DataType(DataType.Password)]
-        [Display(Name = "Подтвердить пароль")]
-        public string PasswordConfirm { get; set; }
+        public string ReturnUrl { get; set; }
     }
 }

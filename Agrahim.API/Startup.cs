@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Agrahim.Infrastructure;
 using Agrahim.Infrastructure.Entities;
 using MediatR;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -66,6 +67,24 @@ namespace Agrahim.API
             });
             
             #endregion
+
+            #region Аутенфикация
+            
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(cfg =>
+                {
+                    cfg.Cookie.HttpOnly = true;
+                    cfg.Cookie.Expiration = TimeSpan.FromDays(1);
+                    cfg.Cookie.MaxAge = TimeSpan.FromDays(1);
+            
+                    cfg.LoginPath = "/home/login";
+                    cfg.LogoutPath = "/home/logout";
+                    cfg.AccessDeniedPath = "/home/access-denied";
+            
+                    cfg.SlidingExpiration = true;
+                });
+
+            #endregion
             
             #region Сервис Swagger
 
@@ -88,12 +107,12 @@ namespace Agrahim.API
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/home/error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -113,7 +132,7 @@ namespace Agrahim.API
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=home}/{action=index}/{id?}");
             });
         }
     }

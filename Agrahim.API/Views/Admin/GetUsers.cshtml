@@ -7,23 +7,27 @@
 
 <h2>@ViewBag.Title</h2>
 
-<button class="btn"><a asp-controller="Admin" asp-action="CreateUser">Создать</a></button>
+<div>
+    <a class="btn btn-outline-primary" asp-controller="Admin" asp-action="CreateUser">Создать</a>
+    <a class="btn btn-outline-secondary" href="#">Реферальная ссылка</a>
+</div>
 
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th>Email</th>
-            <th>Phone</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var user in Model)
-        {
+<div class="mt-1">
+    <table class="table table-bordered">
+        <thead>
             <tr>
-                <td>@user.Email</td>
-                <td>@user.PhoneNumber</td>
+                <th>Email</th>
+                <th>Phone</th>
             </tr>
-        }
-    </tbody>
-</table>
-
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Email</td>
+                    <td>@user.PhoneNumber</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

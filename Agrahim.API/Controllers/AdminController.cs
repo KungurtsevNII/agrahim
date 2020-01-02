@@ -36,7 +36,7 @@ namespace Agrahim.API.Controllers
         
         [HttpPost, ValidateAntiForgeryToken]
         [Route("users/create")]
-        public async Task<IActionResult> CreateUser(CreateUserViewModel model, CancellationToken ct)
+        public async Task<IActionResult> CreateUser(CreateUserViewModel model)
         {
             if (ModelState.IsValid)
             {
