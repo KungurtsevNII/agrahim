@@ -46,9 +46,10 @@ namespace Agrahim.API
             #endregion
 
             #region Система Identity
-
+            
             services.AddIdentity<UserEntity, IdentityRole>()
-                .AddEntityFrameworkStores<AgrahimContext>();
+                .AddEntityFrameworkStores<AgrahimContext>()
+                .AddDefaultTokenProviders();
             
             services.Configure<IdentityOptions>(cfg =>
             {
@@ -68,21 +69,20 @@ namespace Agrahim.API
             
             #endregion
 
-            #region Аутенфикация
-            
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie(cfg =>
-                {
-                    cfg.Cookie.HttpOnly = true;
-                    cfg.Cookie.Expiration = TimeSpan.FromDays(1);
-                    cfg.Cookie.MaxAge = TimeSpan.FromDays(1);
-            
-                    cfg.LoginPath = "/home/login";
-                    cfg.LogoutPath = "/home/logout";
-                    cfg.AccessDeniedPath = "/home/access-denied";
-            
-                    cfg.SlidingExpiration = true;
-                });
+            #region Аутенфикация(Куки)
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.AccessDeniedPath = "/home/access-denied";
+                options.Cookie.Name = "Agrohim";
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+                options.LoginPath = "/home/login";
+                // ReturnUrlParameter requires 
+                //using Microsoft.AspNetCore.Authentication.Cookies;
+                options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
+                options.SlidingExpiration = true;
+            });
 
             #endregion
             
