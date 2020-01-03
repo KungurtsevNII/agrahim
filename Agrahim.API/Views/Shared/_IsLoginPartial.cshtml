@@ -1,0 +1,21 @@
+﻿<ul class="navbar-nav d-flex justify-content-end">
+    <li>
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Login">Вход</a>
+        }
+        else
+        {
+            <div class="dropdown show">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    @User.Identity.Name
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Аккаунт</a>
+                    <a class="dropdown-item" href="#">Профиль</a>
+                    <a class="dropdown-item" asp-controller="Home" asp-action="Logout">Выход</a>
+                </div>
+            </div>
+        }
+    </li>
+</ul>
