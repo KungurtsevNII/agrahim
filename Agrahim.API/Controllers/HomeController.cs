@@ -35,9 +35,13 @@ namespace Agrahim.API.Controllers
 
         [HttpGet("privacy")]
         public IActionResult Privacy() => View();
-        
+
         [HttpGet("login")]
-        public IActionResult Login(string returnUrl = null) => View(new LoginViewModel { ReturnUrl = returnUrl });
+        public IActionResult Login(string returnUrl = null)
+        {
+            if (User.Identity.IsAuthenticated) return RedirectToAction("Index");
+            return View(new LoginViewModel { ReturnUrl = returnUrl });;
+        }
 
         [HttpGet("access-denied")]
         public IActionResult AccessDenied() => View();
