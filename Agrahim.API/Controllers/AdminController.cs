@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Agrahim.API.Controllers
 {
     [Route("admin")]
-    [Authorize]
+    [Authorize(Roles = UserEntity.RoleAdmin)]
     public class AdminController : Controller
     {
         private readonly UserManager<UserEntity> _userManager;
@@ -40,23 +40,34 @@ namespace Agrahim.API.Controllers
         [Route("users/create")]
         public async Task<IActionResult> CreateUser(CreateUserViewModel model)
         {
-            if (ModelState.IsValid)
+            // Валидация модели
+            if (!ModelState.IsValid) return View();
+            
+            UserEntity user = new UserEntity { Email = model.Email, UserName = model.Email };
+            var result = await _userManager.CreateAsync(user, model.Password);
+            
+            // Если создание закончилось с ошибками, то сохраняем их в модель.
+            if (!result.Succeeded)
             {
-                UserEntity user = new UserEntity { Email = model.Email, UserName = model.Email };
-                var result = await _userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                foreach (var error in result.Errors)
                 {
-                    return RedirectToAction("GetUsers", "Admin");
+                    ModelState.AddModelError(string.Empty, error.Description);
                 }
-                else
-                {
-                    foreach (var error in result.Errors)
-                    {
-                        ModelState.AddModelError(string.Empty, error.Description);
-                    }
-                }
+                return View();
             }
-            return View();
+
+            var addToRoleResult = await _userManager.AddToRoleAsync(user, UserEntity.RoleUser);
+            
+            if (!addToRoleResult.Succeeded)
+            {
+                foreach (var error in addToRoleResult.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.Description);
+                }
+                return View();
+            }
+            
+            return RedirectToAction("GetUsers", "Admin");
         }
     }
 }
