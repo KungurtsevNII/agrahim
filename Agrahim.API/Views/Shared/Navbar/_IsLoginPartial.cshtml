@@ -11,8 +11,7 @@
                     @User.Identity.Name
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Аккаунт</a>
-                    <a class="dropdown-item" href="#">Профиль</a>
+                    <a class="dropdown-item" asp-controller="Account" asp-action="Index">Профиль</a>
                     <a class="dropdown-item" asp-controller="Home" asp-action="Logout">Выход</a>
                 </div>
             </div>

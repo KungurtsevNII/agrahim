@@ -1,0 +1,46 @@
+﻿@model Agrahim.Common.ViewModels.ChangePasswordViewModel
+@{
+    ViewBag.Title = "Профиль";
+    Layout = "_Layout";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row justify-content-center">
+    <div class="col-8">
+        <h3>Сменить пароль</h3>
+        <form method="post" asp-controller="Account" asp-action="ChangePassword">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="form-group">
+                <label asp-for="Password" for="passwordInput"></label><br/>
+                <input asp-for="Password" id="passwordInput" class="form-control"/>
+                <span asp-validation-for="Password"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NewPassword" for="newPasswordInput"></label><br/>
+                <input asp-for="NewPassword" id="newPasswordInput" class="form-control"/>
+                <span asp-validation-for="NewPassword"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PasswordConfirm" for="passwordConfirmInput"></label><br/>
+                <input asp-for="PasswordConfirm" id="passwordConfirmInput" class="form-control"/>
+                <span asp-validation-for="PasswordConfirm"></span>
+            </div>
+            <input class="btn btn-primary" type="submit" value="Отправить"/>
+        </form>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+@section Css
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationCssPartial");
+    }
+}
