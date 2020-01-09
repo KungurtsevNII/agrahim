@@ -2,30 +2,25 @@
 using System.Threading.Tasks;
 using Agrahim.Common.ViewModels;
 using Agrahim.Infrastructure.Entities;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Agrahim.API.Controllers
+namespace Agrahim.API.Areas.Admin.Controllers
 {
-    [Route("admin")]
-    [Authorize(Roles = UserEntity.RoleAdmin)]
-    public class AdminController : Controller
+    [Area("admin")]
+    [Route("[area]/users")]
+    public class UsersController : Controller
     {
         private readonly UserManager<UserEntity> _userManager;
 
-        public AdminController(UserManager<UserEntity> userManager)
+        public UsersController(UserManager<UserEntity> userManager)
         {
             _userManager = userManager;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        [Route("users")]
+        [Route("index")]
+        [Route("")]
         public async Task<IActionResult> GetUsers(CancellationToken ct)
         {
             var result = await _userManager.Users.ToListAsync(ct);
@@ -33,11 +28,11 @@ namespace Agrahim.API.Controllers
         }
         
         [HttpGet]
-        [Route("users/create")]
+        [Route("create")]
         public IActionResult CreateUser() => View();
         
         [HttpPost, ValidateAntiForgeryToken]
-        [Route("users/create")]
+        [Route("create")]
         public async Task<IActionResult> CreateUser(CreateUserViewModel model)
         {
             // Валидация модели
@@ -67,7 +62,7 @@ namespace Agrahim.API.Controllers
                 return View();
             }
             
-            return RedirectToAction("GetUsers", "Admin");
+            return RedirectToAction("GetUsers", "Users");
         }
     }
 }

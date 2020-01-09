@@ -134,6 +134,11 @@ namespace Agrahim.API
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapAreaControllerRoute(
+                    name: "admin_area",
+                    areaName:"Admin",
+                    pattern: "admin/{controller=home}/{action=index}/{id?}");
+                
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=home}/{action=index}/{id?}");

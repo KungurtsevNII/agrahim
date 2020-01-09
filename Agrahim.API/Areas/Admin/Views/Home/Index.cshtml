@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Администраторская панель";
+    Layout = "_Layout";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<ul>
+    <li><a asp-area="Admin" asp-controller="Home" asp-action="Index">Администраторская панель</a></li>
+    <li><a asp-area="Admin" asp-controller="Users" asp-action="GetUsers">Администрирование пользователей</a></li>
+</ul>
