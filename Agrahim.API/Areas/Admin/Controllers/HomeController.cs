@@ -14,6 +14,7 @@ namespace Agrahim.API.Areas.Admin.Controllers
     {
         [Route("")]
         [Route("index")]
+        [HttpGet]
         public IActionResult Index()
         {
             return View();

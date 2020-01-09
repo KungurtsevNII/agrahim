@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Agrahim.Common.DTOs.CropsTypeDto>
+@{
+    ViewBag.Title = "Типы культур";
+    Layout = "_Layout";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <a class="btn btn-outline-primary" asp-area="Admin" asp-controller="CropsTypes" asp-action="Create">Создать</a>
+</div>
+
+<div class="mt-1">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Название</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var cropsType in Model)
+        {
+            <tr>
+                <td>@cropsType.Id</td>
+                <td>@cropsType.Name</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

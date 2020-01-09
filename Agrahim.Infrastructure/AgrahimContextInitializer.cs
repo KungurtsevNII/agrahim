@@ -30,7 +30,7 @@ namespace Agrahim.Infrastructure
             if (!await _roleManager.RoleExistsAsync(UserEntity.RoleAdmin))
                 await _roleManager.CreateAsync(new IdentityRole(UserEntity.RoleAdmin));
 
-            if (await _userManager.FindByNameAsync(UserEntity.AdminUserName) == null)
+            if (await _userManager.FindByEmailAsync(UserEntity.AdminUserName) == null)
             {
                 var admin = new UserEntity
                 {
@@ -38,9 +38,9 @@ namespace Agrahim.Infrastructure
                     Email = UserEntity.AdminUserName
                 };
 
-                var creation_result = await _userManager.CreateAsync(admin, UserEntity.DefaultAdminPassword);
+                var creationResult = await _userManager.CreateAsync(admin, UserEntity.DefaultAdminPassword);
 
-                if (creation_result.Succeeded)
+                if (creationResult.Succeeded)
                     await _userManager.AddToRoleAsync(admin, UserEntity.RoleAdmin);
             }
         }

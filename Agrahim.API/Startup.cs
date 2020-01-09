@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Agrahim.Domain.ServicesContracts;
 using Agrahim.Infrastructure;
 using Agrahim.Infrastructure.Entities;
+using Agrahim.Infrastructure.Services;
+using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -35,6 +38,14 @@ namespace Agrahim.API
             services.AddControllersWithViews();
 
             services.AddMediatR(Assembly.GetExecutingAssembly());
+
+            services.AddAutoMapper(typeof(Startup));
+            
+            #region Бизнесс сервисы
+
+            services.AddScoped<ICropsTypesService, CropsTypesService>();
+
+            #endregion
             
             #region DbContext
 

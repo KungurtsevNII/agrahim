@@ -5,7 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="ServicesContracts" />
+      <ProjectReference Include="..\Agrahim.Common\Agrahim.Common.csproj" />
     </ItemGroup>
 
 </Project>
