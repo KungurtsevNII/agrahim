@@ -43,11 +43,34 @@ namespace Agrahim.Infrastructure.Services
             await _agrahimContext.SaveChangesAsync(ct);
          }
 
-        public bool IsUniq(string name)
+        public async Task<bool> IsUniq(string name, CancellationToken ct = default)
         {
-            var cropsTypeEntity =  _agrahimContext.CropsTypes
-                .FirstOrDefault(entity => entity.NormalizedName == name.ToUpper());
+            var cropsTypeEntity = await _agrahimContext.CropsTypes
+                .FirstOrDefaultAsync(entity => entity.NormalizedName == name.ToUpper(), ct);
             return cropsTypeEntity == default;
+        }
+
+        public async Task Disable(long id, CancellationToken ct = default)
+        {
+            var cropsType = await _agrahimContext.CropsTypes
+                .FindAsync(id);
+
+            if (cropsType is null)
+            {
+                return;
+            }
+
+            cropsType.IsRemoved = true;
+            await _agrahimContext.SaveChangesAsync(ct);
+        }
+
+        public async Task<UpdateCropsTypeViewModel> GetById(long id, CancellationToken ct = default)
+        {
+            var result = await _agrahimContext.CropsTypes
+                .ProjectTo<UpdateCropsTypeViewModel>(_mapper.ConfigurationProvider)
+                .FirstOrDefaultAsync(ct => ct.Id == id, ct);
+
+            return result;
         }
     }
 }

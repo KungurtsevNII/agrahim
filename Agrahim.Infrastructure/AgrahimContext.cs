@@ -26,6 +26,7 @@ namespace Agrahim.Infrastructure
             
             builder.Entity<CropsTypeEntity>().HasIndex(ct => ct.NormalizedName).IsUnique();
             builder.Entity<CropsTypeEntity>().Property(ct => ct.CreatedAt).HasDefaultValueSql("GETDATE()");
+            builder.Entity<CropsTypeEntity>().Property(ct => ct.IsRemoved).HasDefaultValue(false);
         }
     }
 }

@@ -19,6 +19,9 @@ namespace Agrahim.Infrastructure.Entities
         [Required]
         [MaxLength(200)]
         public string NormalizedName { get; set; }
+
+        [Required]
+        public bool IsRemoved { get; set; }
         
         [Required]
         public DateTime CreatedAt { get; set; }

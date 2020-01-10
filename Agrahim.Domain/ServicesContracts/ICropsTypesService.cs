@@ -12,6 +12,10 @@ namespace Agrahim.Domain.ServicesContracts
 
         Task Create(string name, CancellationToken ct = default);
 
-        bool IsUniq(string name);
+        Task<bool> IsUniq(string name, CancellationToken ct = default);
+
+        Task Disable(long id, CancellationToken ct = default);
+
+        Task<UpdateCropsTypeViewModel> GetById(long id, CancellationToken ct = default);
     }
 }

@@ -7,7 +7,7 @@
 <h2>@ViewBag.Title</h2>
 
 <div>
-    <a class="btn btn-outline-primary" asp-area="Admin" asp-controller="CropsTypes" asp-action="Create">Создать</a>
+    <a class="btn btn-outline-success" asp-area="Admin" asp-controller="CropsTypes" asp-action="Create">Создать</a>
 </div>
 
 <div class="mt-1">
@@ -16,6 +16,8 @@
         <tr>
             <th>Id</th>
             <th>Название</th>
+            <th>Статус</th>
+            <th>Действия</th>
         </tr>
         </thead>
         <tbody>
@@ -24,6 +26,25 @@
             <tr>
                 <td>@cropsType.Id</td>
                 <td>@cropsType.Name</td>
+                <td>@(cropsType.IsRemoved ? "Неактивен" : "Действует")</td>
+                <td>
+                    <a
+                        class="btn btn-outline-danger"
+                        asp-area="Admin"
+                        asp-controller="CropsTypes"
+                        asp-action="Disable"
+                        asp-route-id=@cropsType.Id>
+                        <i class="fa fa-ban"></i>
+                    </a> 
+                    <a 
+                        class="btn btn-outline-info" 
+                        asp-area="Admin" 
+                        asp-controller="CropsTypes" 
+                        asp-action="Update"
+                        asp-route-id=@cropsType.Id>
+                        <i class="fa fa-edit"></i>
+                    </a>
+                </td>
             </tr>
         }
         </tbody>

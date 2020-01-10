@@ -1,14 +1,14 @@
-﻿using Agrahim.Common.DTOs;
+﻿using Agrahim.Common.ViewModels;
 using Agrahim.Infrastructure.Entities;
 using AutoMapper;
 
 namespace Agrahim.API.Application.Map
 {
-    public class CropsTypesDtoMapper : Profile
+    public class UpdateCropsTypeViewModelMapper : Profile
     {
-        public CropsTypesDtoMapper()
+        public UpdateCropsTypeViewModelMapper()
         {
-            CreateMap<CropsTypeEntity, CropsTypeDto>()
+            CreateMap<CropsTypeEntity, UpdateCropsTypeViewModel>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name))
                 .ForMember(dest => dest.IsRemoved, opt => opt.MapFrom(src => src.IsRemoved));
