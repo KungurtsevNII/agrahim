@@ -17,5 +17,7 @@ namespace Agrahim.Domain.ServicesContracts
         Task Disable(long id, CancellationToken ct = default);
 
         Task<UpdateCropsTypeViewModel> GetById(long id, CancellationToken ct = default);
+
+        Task Update(UpdateCropsTypeViewModel model, CancellationToken ct = default);
     }
 }

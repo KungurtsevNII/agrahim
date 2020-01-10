@@ -72,5 +72,19 @@ namespace Agrahim.Infrastructure.Services
 
             return result;
         }
+
+        public async Task Update(UpdateCropsTypeViewModel model, CancellationToken ct = default)
+        {
+            var cropsTypeEntity = await _agrahimContext.CropsTypes.FindAsync(model.Id);
+
+            if (cropsTypeEntity is null)
+            {
+                return;
+            }
+            
+            cropsTypeEntity.Name = model.Name;
+            cropsTypeEntity.IsRemoved = model.IsRemoved;
+            await _agrahimContext.SaveChangesAsync(ct);
+        }
     }
 }

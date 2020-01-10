@@ -68,9 +68,12 @@ namespace Agrahim.API.Areas.Admin.Controllers
         [HttpPost("update/{id}")]
         public async Task<IActionResult> Update(UpdateCropsTypeViewModel model, CancellationToken ct)
         {
-            if (!ModelState.IsValid) return View();
-            
-            Console.WriteLine("asdasdasd");
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            await _cropsTypesService.Update(model, ct);
             
             return View();
         }
