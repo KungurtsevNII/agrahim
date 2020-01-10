@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -35,11 +36,18 @@ namespace Agrahim.Infrastructure.Services
         {
             var entity = new CropsTypeEntity
             {
-                Name = name
+                Name = name,
             };
             
             await _agrahimContext.CropsTypes.AddAsync(entity, ct);
             await _agrahimContext.SaveChangesAsync(ct);
+         }
+
+        public bool IsUniq(string name)
+        {
+            var cropsTypeEntity =  _agrahimContext.CropsTypes
+                .FirstOrDefault(entity => entity.NormalizedName == name.ToUpper());
+            return cropsTypeEntity == default;
         }
     }
 }

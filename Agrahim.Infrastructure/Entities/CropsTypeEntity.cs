@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 
@@ -18,5 +19,8 @@ namespace Agrahim.Infrastructure.Entities
         [Required]
         [MaxLength(200)]
         public string NormalizedName { get; set; }
+        
+        [Required]
+        public DateTime CreatedAt { get; set; }
     }
 }

@@ -1,9 +1,11 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Agrahim.Common.ViewModels;
 using Agrahim.Domain.ServicesContracts;
 using Agrahim.Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Agrahim.API.Areas.Admin.Controllers
 {
@@ -40,6 +42,12 @@ namespace Agrahim.API.Areas.Admin.Controllers
         {
             // Валидация модели
             if (!ModelState.IsValid) return View();
+
+            if (!_cropsTypesService.IsUniq(model.Name))
+            {
+                ModelState.AddModelError("", "Название культуры должны быть уникальным.");
+                return View();
+            }
             
             await _cropsTypesService.Create(model.Name, ct);
             return RedirectToAction("Index");

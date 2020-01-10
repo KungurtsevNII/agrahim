@@ -11,5 +11,7 @@ namespace Agrahim.Domain.ServicesContracts
         Task<IEnumerable<CropsTypeDto>> GetAll(CancellationToken ct = default);
 
         Task Create(string name, CancellationToken ct = default);
+
+        bool IsUniq(string name);
     }
 }
