@@ -28,14 +28,14 @@
                 <td>@cropsType.Name</td>
                 <td>@(cropsType.IsRemoved ? "Неактивен" : "Действует")</td>
                 <td>
-                    <a
+                    @*<a
                         class="btn btn-outline-danger"
                         asp-area="Admin"
                         asp-controller="CropsTypes"
                         asp-action="Disable"
                         asp-route-id=@cropsType.Id>
                         <i class="fa fa-ban"></i>
-                    </a> 
+                    </a>*@
                     <a 
                         class="btn btn-outline-info" 
                         asp-area="Admin" 
