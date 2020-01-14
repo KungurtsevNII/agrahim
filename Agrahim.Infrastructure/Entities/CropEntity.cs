@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data;
 
 namespace Agrahim.Infrastructure.Entities
 {
-    [Table("CropsTypes")]
-    public class CropsTypeEntity
+    public class CropEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -16,24 +13,16 @@ namespace Agrahim.Infrastructure.Entities
         [Required]
         [MaxLength(200)]
         public string Name { get; set; }
-        
+
         [Required]
         [MaxLength(200)]
         public string NormalizedName { get; set; }
         
         [Required]
-        [Column(TypeName = "decimal(5,2)")]
-        public decimal CoefficientN { get; set; }
+        public long CropsTypeId { get; set; }
         
-        [Required]
-        [Column(TypeName = "decimal(5,2)")]
-        public decimal CoefficientP { get; set; }
-        
-        [Required]
-        [Column(TypeName = "decimal(5,2)")]
-        public decimal CoefficientK { get; set; }
-
-        public List<CropEntity> Crops { get; set; }
+        [ForeignKey("CropsTypeId")]
+        public CropsTypeEntity CropsType { get; set; }
 
         [Required]
         public bool IsRemoved { get; set; }

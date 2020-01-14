@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Agrahim.Common.DTOs.CropDto>
+
+@{
+    ViewBag.Title = "Культуры";
+    Layout = "_Layout";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div>
+    <a class="btn btn-outline-success" asp-area="Admin" asp-controller="Crops" asp-action="Create">Создать</a>
+</div>
+
+<div class="mt-1">
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Название</th>
+            <th>Тип культуры</th>
+            <th>Статус</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var crops in Model)
+        {
+            <tr>
+                <td>@crops.Id</td>
+                <td>@crops.Name</td>
+                <td>@crops.CropsTypeName</td>
+                <td>@(crops.IsRemoved ? "Неактивен" : "Действует")</td>
+                <td>
+                    <a 
+                        class="btn btn-outline-info" 
+                        asp-area="Admin" 
+                        asp-controller="Crops" 
+                        asp-action="Index"
+                        asp-route-id=@crops.Id>
+                        <i class="fa fa-edit"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

@@ -47,7 +47,7 @@ namespace Agrahim.API.Areas.Admin.Controllers
 
             if (!await _cropsTypesService.IsUniq(model.Name, ct))
             {
-                ModelState.AddModelError("", "Название культуры должны быть уникальным.");
+                ModelState.AddModelError("", "Название типа культуры должны быть уникальным.");
                 return View();
             }
             

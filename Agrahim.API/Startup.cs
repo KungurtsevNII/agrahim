@@ -50,6 +50,7 @@ namespace Agrahim.API
             #region Бизнесс сервисы
 
             services.AddScoped<ICropsTypesService, CropsTypesService>();
+            services.AddScoped<ICropsService, CropsService>();
 
             #endregion
             
