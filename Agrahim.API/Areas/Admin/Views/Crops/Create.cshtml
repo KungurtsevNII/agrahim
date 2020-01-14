@@ -1,0 +1,42 @@
+﻿@using Agrahim.Common.DTOs
+@model Agrahim.Common.ViewModels.Crops.CreateCropViewModel
+
+@{
+    ViewBag.Title = "Cоздание культуры";
+    Layout = "_Layout";
+}
+
+<div class="row justify-content-center">
+    <div class="col-8">
+        <h2>@ViewBag.Title</h2>
+        <form method="post" asp-area="Admin" asp-controller="Crops" asp-action="Create">
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="form-group">
+                <label asp-for="Name" for="nameInput"></label><br/>
+                <input asp-for="Name" id="nameInput" class="form-control"/>
+                <span asp-validation-for="Name"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CropsTypeId" class="control-label"></label>
+                <select asp-for="CropsTypeId" class="form-control" asp-items="ViewBag.CropsTypes">
+                    <option value="">Выберите тип культуры</option>
+                </select>
+                <span asp-validation-for="CropsTypeId"></span>
+            </div>
+            <input class="btn btn-success" type="submit" value="Создать"/>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+@section Css
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationCssPartial");
+    }
+}
