@@ -1,4 +1,4 @@
-﻿@model Agrahim.Common.ViewModels.CreateCropsTypeViewModel
+﻿@model Agrahim.Common.ViewModels.CropsType.CreateCropsTypeViewModel
 
 @{
     ViewBag.Title = "Создание типа культуры";
@@ -14,6 +14,21 @@
                 <label asp-for="Name" for="nameInput"></label><br/>
                 <input asp-for="Name" id="nameInput" class="form-control"/>
                 <span asp-validation-for="Name"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CoefficientN" for="nInput"></label><br/>
+                <input asp-for="CoefficientN" id="nInput" class="form-control"/>
+                <span asp-validation-for="CoefficientN"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CoefficientP" for="CoefficientP"></label><br/>
+                <input asp-for="CoefficientP" id="CoefficientP" class="form-control"/>
+                <span asp-validation-for="CoefficientP"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CoefficientK" for="CoefficientK"></label><br/>
+                <input asp-for="CoefficientK" id="CoefficientK" class="form-control"/>
+                <span asp-validation-for="CoefficientK"></span>
             </div>
             <input class="btn btn-success" type="submit" value="Создать"/>
         </form>

@@ -19,6 +19,18 @@ namespace Agrahim.Infrastructure.Entities
         [Required]
         [MaxLength(200)]
         public string NormalizedName { get; set; }
+        
+        [Required]
+        [Column(TypeName = "decimal(5,2)")]
+        public decimal CoefficientN { get; set; }
+        
+        [Required]
+        [Column(TypeName = "decimal(5,2)")]
+        public decimal CoefficientP { get; set; }
+        
+        [Required]
+        [Column(TypeName = "decimal(5,2)")]
+        public decimal CoefficientK { get; set; }
 
         [Required]
         public bool IsRemoved { get; set; }

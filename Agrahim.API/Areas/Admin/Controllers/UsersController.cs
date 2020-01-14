@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Agrahim.Common.ViewModels;
 using Agrahim.Infrastructure.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,7 @@ namespace Agrahim.API.Areas.Admin.Controllers
 {
     [Area("admin")]
     [Route("[area]/users")]
+    [Authorize(Roles = UserEntity.RoleAdmin)]
     public class UsersController : Controller
     {
         private readonly UserManager<UserEntity> _userManager;

@@ -16,6 +16,9 @@
         <tr>
             <th>Id</th>
             <th>Название</th>
+            <th>N</th>
+            <th>P</th>
+            <th>K</th>
             <th>Статус</th>
             <th>Действия</th>
         </tr>
@@ -26,16 +29,11 @@
             <tr>
                 <td>@cropsType.Id</td>
                 <td>@cropsType.Name</td>
+                <td>@cropsType.CoefficientN</td>
+                <td>@cropsType.CoefficientP</td>
+                <td>@cropsType.CoefficientK</td>
                 <td>@(cropsType.IsRemoved ? "Неактивен" : "Действует")</td>
                 <td>
-                    @*<a
-                        class="btn btn-outline-danger"
-                        asp-area="Admin"
-                        asp-controller="CropsTypes"
-                        asp-action="Disable"
-                        asp-route-id=@cropsType.Id>
-                        <i class="fa fa-ban"></i>
-                    </a>*@
                     <a 
                         class="btn btn-outline-info" 
                         asp-area="Admin" 

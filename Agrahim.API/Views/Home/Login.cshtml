@@ -24,6 +24,7 @@
                 <label class="form-check-label" for="rememberMe">Запомнить меня</label>
                 <span asp-validation-for="RememberMe"></span>
             </div>
+            <input type="hidden" asp-for="ReturnUrl"/>
             <input class="btn btn-primary" type="submit" value="Вход"/>
         </form>
     </div>

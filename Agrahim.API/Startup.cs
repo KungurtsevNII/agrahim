@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -40,6 +41,11 @@ namespace Agrahim.API
             services.AddMediatR(Assembly.GetExecutingAssembly());
 
             services.AddAutoMapper(typeof(Startup));
+            
+            CultureInfo customCulture = new CultureInfo("ru-Ru");
+            customCulture.NumberFormat.NumberDecimalSeparator = ".";
+            CultureInfo.DefaultThreadCurrentCulture = customCulture;
+            CultureInfo.DefaultThreadCurrentUICulture = customCulture;
             
             #region Бизнесс сервисы
 

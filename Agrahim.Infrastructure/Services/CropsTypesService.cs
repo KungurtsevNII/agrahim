@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Agrahim.Common.DTOs;
 using Agrahim.Common.ViewModels;
+using Agrahim.Common.ViewModels.CropsType;
 using Agrahim.Domain.ServicesContracts;
 using Agrahim.Infrastructure.Entities;
 using AutoMapper;
@@ -32,11 +33,14 @@ namespace Agrahim.Infrastructure.Services
             return result;
         }
 
-        public async Task Create(string name, CancellationToken ct = default)
+        public async Task Create(CreateCropsTypeViewModel model, CancellationToken ct = default)
         {
             var entity = new CropsTypeEntity
             {
-                Name = name,
+                Name = model.Name,
+                CoefficientK = model.CoefficientK,
+                CoefficientN = model.CoefficientN,
+                CoefficientP = model.CoefficientP
             };
             
             await _agrahimContext.CropsTypes.AddAsync(entity, ct);
@@ -83,6 +87,9 @@ namespace Agrahim.Infrastructure.Services
             }
             
             cropsTypeEntity.Name = model.Name;
+            cropsTypeEntity.CoefficientK = model.CoefficientK;
+            cropsTypeEntity.CoefficientN = model.CoefficientN;
+            cropsTypeEntity.CoefficientP = model.CoefficientP;
             cropsTypeEntity.IsRemoved = model.IsRemoved;
             await _agrahimContext.SaveChangesAsync(ct);
         }

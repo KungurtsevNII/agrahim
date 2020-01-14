@@ -2,13 +2,17 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Agrahim.Common.ViewModels;
+using Agrahim.Common.ViewModels.CropsType;
 using Agrahim.Domain.ServicesContracts;
+using Agrahim.Infrastructure.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Agrahim.API.Areas.Admin.Controllers
 {
     [Area("admin")]
     [Route("[area]/crops-types")]
+    [Authorize(Roles = UserEntity.RoleAdmin)]
     public class CropsTypesController : Controller
     {
         private readonly ICropsTypesService _cropsTypesService;
@@ -47,7 +51,7 @@ namespace Agrahim.API.Areas.Admin.Controllers
                 return View();
             }
             
-            await _cropsTypesService.Create(model.Name, ct);
+            await _cropsTypesService.Create(model, ct);
             return RedirectToAction("Index");
         }
 
@@ -74,8 +78,7 @@ namespace Agrahim.API.Areas.Admin.Controllers
             }
 
             await _cropsTypesService.Update(model, ct);
-            
-            return View();
+            return RedirectToAction("Index");
         }
     }
 }

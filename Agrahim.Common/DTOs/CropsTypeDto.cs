@@ -6,6 +6,12 @@
         
         public string Name { get; set; }
 
+        public decimal CoefficientN { get; set; }
+        
+        public decimal CoefficientP { get; set; }
+        
+        public decimal CoefficientK { get; set; }
+
         public bool IsRemoved { get; set; }
     }
 }
