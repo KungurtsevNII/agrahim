@@ -28,7 +28,7 @@ namespace Agrahim.Infrastructure.Services
         public async Task<IEnumerable<CropsTypeDto>> GetAll(CancellationToken ct = default)
         {
             var result = await _agrahimContext.CropsTypes
-                .Where(ct => ct.IsRemoved == false)
+                .OrderBy(ct => ct.NormalizedName)
                 .ProjectTo<CropsTypeDto>(_mapper.ConfigurationProvider)
                 .ToListAsync(ct);
             return result;

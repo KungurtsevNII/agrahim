@@ -36,12 +36,12 @@ namespace Agrahim.Infrastructure.Services
         {
             var result = await _agrahimContext.CropsTypes
                 .Where(ct => ct.IsRemoved == false)
+                .OrderBy(ct => ct.NormalizedName)
                 .Select(ct => new CropsTypeToSelectDto
                 {
                     Id = ct.Id,
                     Name = ct.Name
                 })
-                .OrderBy(ct => ct.Name)
                 .ToListAsync(ct);
 
             return result;
